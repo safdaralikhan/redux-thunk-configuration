@@ -1,0 +1,65 @@
+
+REDUX THHUNK
+
+first install redux 
+then install react-redux
+then redux-thunk
+
+create redux structure
+
+store.js code
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import rootReducer from './reducers/RootReducer'
+
+const store = createStore(rootReducer, applyMiddleware(thunk))
+
+export default store
+
+ACTION.JS
+//Action Types
+export const SEARCHDATA = "SEARCHDATA";
+
+
+//Action Creator
+export const updateForm = (data) => ({
+
+    // console.log("data",data)
+    type: SEARCHDATA,
+    payload:data
+});
+
+Reducer.js
+import { SEARCHDATA } from '../actions/ActionFunction';
+
+
+
+const counterReducer = (state = { searchdata: {} }, action) => {
+    switch (action.type) {
+        case SEARCHDATA:
+
+            console.log("action.payload",action.payload)
+            return { ...state, searchdata: action.payload };
+    
+        default:
+            return { ...state };
+    }
+};
+
+
+
+ export default counterReducer
+
+
+ROOTREDUCER.JS
+
+import counterReducer from './CountReducer';
+import {combineReducers} from 'redux';
+
+const rootReducer = combineReducers({
+    counter: counterReducer
+});
+
+export default rootReducer;
+
+
