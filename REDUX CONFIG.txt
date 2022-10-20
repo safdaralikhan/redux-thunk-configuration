@@ -63,3 +63,7 @@ const rootReducer = combineReducers({
 export default rootReducer;
 
 
+TO GET DATA FROM REDUX USESELECTOR :
+import { useSelector } from 'react-redux'; 
+  const counter = useSelector(state => state.counter)
+  
