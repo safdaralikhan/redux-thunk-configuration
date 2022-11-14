@@ -67,3 +67,29 @@ TO GET DATA FROM REDUX USESELECTOR :
 import { useSelector } from 'react-redux'; 
   const counter = useSelector(state => state.counter)
   
+  
+  
+ACTIVE NAVLINK WITH PATHNAME
+
+import uselocation
+ const location = useLocation();
+from location destructure pathname
+const { pathname } = location;
+
+make state to set path in state
+const [active, setActive] = useState("");
+
+in useeffect setactive when ever header render pathname will change and make condition on active.
+setActive(pathname)
+
+className={active == "/RiderReservation" ? "menu--link  navActive":"menu--link "}
+
+
+
+  
+  
+  
+  
+  
+  
+  
