@@ -69,6 +69,67 @@ import { useSelector } from 'react-redux';
   
   
   
+  HOW TO SEND DATA INTO REDUX
+import { useDispatch } from "react-redux";
+    const dispatch = useDispatch()
+   dispatch(Timein())
+HOW TO GET DATA FROM REDUX
+import { useSelector, } from 'react-redux';
+const store = useSelector(store => store)
+
+
+CALL API IN ACTION JS
+
+export const TIMEIN = "TIMEIN";
+const Timein=(data)=>{
+    return(dispatch)=>{
+        const Token = localStorage.getItem("RiderToken")
+
+        var requestOptions = {
+            method: 'GET',
+            headers: {
+                Authorization: "Bearer " + Token
+            }
+        };
+
+        fetch(`${baseUrl.baseUrl}webapi/ridertimingDetails`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+       
+
+            if (result.length > 0) {
+                console.log("donedata",result)
+              
+
+                    console.log("response",result);
+                dispatch({type:'TIMEIN',  payload:result})
+            }  
+        })
+        .catch(error => {
+            console.log(error);
+        });
+             
+      }
+     
+}
+
+export { Timein}
+
+ACTION JS 
+
+const TimeIn = (state = { timein: {} }, action) => {
+    switch (action.type) {
+        case TIMEIN:
+            return { ...state, timein: action.payload }; 
+       
+        default:
+            return { ...state };
+    }
+};
+
+export default TimeIn;
+
+  
 ACTIVE NAVLINK WITH PATHNAME
 
 import uselocation
